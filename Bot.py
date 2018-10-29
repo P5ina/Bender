@@ -32,6 +32,7 @@ async def on_message(message):
     channel = message.channel
     print('{}: {} from {}'.format(author, content, channel))
     for i in BadWords:
+        print(i) 
         if content.lower().find(i[:-1]) != -1:
             print('finding {} result: {}'.format(i[:-1], content.lower().find(i[:-1])))
             await bot.send_message(channel, 'Без мата :ok_hand:')
