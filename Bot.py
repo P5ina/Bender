@@ -26,7 +26,7 @@ async def on_member_join(member):
 
 @bot.event
 async def on_message(message):
-    BadWords = open('badwords.txt', encoding='ascii')
+    BadWords = open('badwords.txt', encoding='windows-1251')
     author = message.author
     content = str(message.content)
     channel = message.channel
