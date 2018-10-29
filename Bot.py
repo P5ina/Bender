@@ -32,7 +32,6 @@ async def on_message(message):
     channel = message.channel
     print('{}: {} from {}'.format(author, content, channel))
     for i in BadWords:
-        print(i) 
         if content.lower().find(i[:-1]) != -1:
             print('finding {} result: {}'.format(i[:-1], content.lower().find(i[:-1])))
             await bot.send_message(channel, 'Без мата :ok_hand:')
@@ -134,5 +133,6 @@ async def give(ctx, giving='', name='', item='0'):
 @bot.command(pass_context = True)
 @commands.has_role('Тестер ботов')
 async def id (ctx):
-    bot.say(ctx.message.channel.id)
+    channel = ctx.message.channel
+    await bot.send_message(channel, channel.id)
 bot.run(TOKEN)
