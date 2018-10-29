@@ -96,7 +96,7 @@ async def level(ctx):
     
     embed.set_author(name=author.name+' Уровень', icon_url=author.avatar_url)
     embed.add_field(name='Уровень',value=users[author.id]['level'])
-    embed.add_field(name='Опыт',value=users[author.id]['experience'])
+    embed.add_field(name='Опыт',value=str(users[author.id]['experience'])+' / '+ str(users[author.id]['level']+1 ** 4)) 
     await bot.say(embed=embed)
     with open('users.json', 'w') as f:
         json.dump(users, f)  
