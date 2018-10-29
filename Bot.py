@@ -132,7 +132,7 @@ async def give(ctx, giving='', name='', item='0'):
         await on_member_join(member)
 
 @bot.command(pass_context = True)
-@bot.has_role('Тестер ботов')
+@commands.has_role('Тестер ботов')
 async def id (ctx):
     bot.say(ctx.message.channel.id)
 bot.run(TOKEN)
