@@ -5,7 +5,6 @@ from discord.ext import commands
 
 TOKEN = 'NDk2MzI4MDk4MzI1NzI1MjE0.DqEO_A.3j9GQiTg877WXKv5cOBXGO-NTJ0'
 bot = commands.Bot(command_prefix='b.')
-os.chdir(r'D:\PythonProjects\BotsForDiscord\Bender')
 games = {}
 
 @bot.event
