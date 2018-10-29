@@ -132,7 +132,16 @@ async def give(ctx, giving='', name='', item='0'):
 
 @bot.command(pass_context = True)
 @commands.has_role('Тестер ботов')
-async def id (ctx):
+async def id (ctx, name=''):
     channel = ctx.message.channel
-    await bot.send_message(channel, channel.id)
+    members = ctx.message.server.members
+    member = ctx.message.author
+    for i in members:
+        if i.mention == name:
+            member = i
+            break    
+    if name == '':
+        await bot.send_message(channel, channel.id)
+    else:
+        await bot.send_message(channel, member.id)
 bot.run(TOKEN)
