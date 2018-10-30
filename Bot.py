@@ -85,7 +85,7 @@ async def find(ctx, game):
         await bot.send_message(channel, 'Подбор начался')
         
 @bot.command(pass_context = True)
-async def level(ctx, name):
+async def level(ctx, name=''):
     channel = ctx.message.channel
     members = ctx.message.server.members
     member = ctx.message.author
