@@ -100,11 +100,12 @@ async def level(ctx, name):
         colour = discord.Colour.blue()
     )
     if author.id == '498163342079426570':
-        bot.say(users[member.id]['level'])
-    embed.set_author(name=member.name, icon_url=member.avatar_url)
-    embed.add_field(name='Уровень',value=users[member.id]['level'])
-    embed.add_field(name='Опыт',value=str(users[member.id]['experience'])+' / '+ str((users[member.id]['level']+1) ** 4)) 
-    await bot.say(embed=embed)
+        await bot.say(users[member.id]['level'])
+    else:
+        embed.set_author(name=member.name, icon_url=member.avatar_url)
+        embed.add_field(name='Уровень',value=users[member.id]['level'])
+        embed.add_field(name='Опыт',value=str(users[member.id]['experience'])+' / '+ str((users[member.id]['level']+1) ** 4)) 
+        await bot.say(embed=embed)
     with open('users.json', 'w') as f:
         json.dump(users, f)  
 
