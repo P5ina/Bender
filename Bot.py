@@ -85,18 +85,25 @@ async def find(ctx, game):
         await bot.send_message(channel, 'Подбор начался')
         
 @bot.command(pass_context = True)
-async def level(ctx):
-    author = ctx.message.author
+async def level(ctx, name):
     channel = ctx.message.channel
+    members = ctx.message.server.members
+    member = ctx.message.author
+    author = ctx.message.author
+    for i in members:
+        if i.mention == name:
+            member = i
+            break    
     with open('users.json', 'r') as f:
         users = json.load(f)
     embed = discord.Embed(
         colour = discord.Colour.blue()
     )
-    
-    embed.set_author(name=author.name+' Уровень', icon_url=author.avatar_url)
-    embed.add_field(name='Уровень',value=users[author.id]['level'])
-    embed.add_field(name='Опыт',value=str(users[author.id]['experience'])+' / '+ str((users[author.id]['level']+1) ** 4)) 
+    if author.id == '498163342079426570':
+        bot.say(users[member.id]['level'])
+    embed.set_author(name=member.name, icon_url=member.avatar_url)
+    embed.add_field(name='Уровень',value=users[member.id]['level'])
+    embed.add_field(name='Опыт',value=str(users[member.id]['experience'])+' / '+ str((users[member.id]['level']+1) ** 4)) 
     await bot.say(embed=embed)
     with open('users.json', 'w') as f:
         json.dump(users, f)  
