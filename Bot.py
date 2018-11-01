@@ -167,7 +167,7 @@ async def warn(ctx, name):
         return 
     with open('users.json', 'r') as f:
             users = json.load(f)
-    
+    await update_data(users, message.author)
     users[member.id]['warn'] += 1
     if users[member.id]['warn'] >= 3:
         bot.ban(member, delete_message_days=1)
