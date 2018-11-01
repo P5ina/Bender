@@ -53,6 +53,7 @@ async def update_data(users, user):
         users[user.id] = {}
         users[user.id]['experience'] = 0
         users[user.id]['level'] = 1
+        users[user.id]['warn'] = 0
         
 async def add_experience(users, user, exp, mode, channel):
     if mode.lower() == 'give':
@@ -152,4 +153,25 @@ async def id (ctx, name=''):
         await bot.send_message(channel, channel.id)
     else:
         await bot.send_message(channel, member.id)
+        
+bot.command(pass_context=True)
+async def warn(ctx, name):
+    members = ctx.message.server.members
+    member = ctx.message.author
+    for i in members:
+        if i.mention == name:
+            member = i
+            break
+    if member == ctx.message.author:
+        bot.say('Пользователь {} не найдей'.format(name))
+        return 
+    with open('users.json', 'r') as f:
+            users = json.load(f)
+    
+    users[member.id]['warn'] += 1
+    if users[member.id]['warn'] >= 3:
+        bot.ban(member, delete_message_days=1)
+    
+    with open('users.json', 'w') as f:
+            json.dump(users, f)
 bot.run(TOKEN)
