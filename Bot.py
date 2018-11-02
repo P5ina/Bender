@@ -154,7 +154,7 @@ async def id (ctx, name=''):
     else:
         await bot.send_message(channel, member.id)
         
-bot.command(pass_context=True)
+@bot.command(pass_context=True)
 async def warn(ctx, name):
     members = ctx.message.server.members
     member = ctx.message.author
