@@ -3,7 +3,7 @@ import json
 import os
 from discord.ext import commands
 
-TOKEN = str(os.environ.get('TOKEN'))
+TOKEN = str(os.environ.get('TOKEN')) 
 bot = commands.Bot(command_prefix='b.')
 games = {}
 
